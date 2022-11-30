@@ -1,25 +1,25 @@
-import { Card, Space } from "antd";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { Space, Card } from "antd";
 
-import HourlyConditionsListItem from "./HourlyConditionsListItem";
+import SingleDayListItem from "./SingleDayListItem";
 import { useHorizontalScroll } from "../common/useHorizontalScroll";
-import { getValuesFromArrayForTheNextTwentyFourHours } from "./getValuesFromArrayForTheNextTwentyFourHours";
+import { getValuesFromArrayForTheNextWeek } from "./getValuesFromArrayForTheNextWeek";
 
 import "../../../App.css";
 
-const HourlyConditionsCard = ({ currentConditions }) => {
+const DailyConditionsCard = (dailyConditions) => {
     const [displayData, setDisplayData] = useState([]);
+
     const scrollRef = useHorizontalScroll();
 
     useEffect(() => {
-        setDisplayData(
-            getValuesFromArrayForTheNextTwentyFourHours(currentConditions)
-        );
-    }, [currentConditions]);
+        setDisplayData(getValuesFromArrayForTheNextWeek(dailyConditions));
+    }, [dailyConditions]);
 
     return (
+        //TODO: Map each hour to a card
         <>
-            <h2>Hourly forecast</h2>
+            <h2>Daily forecast</h2>
             <Card
                 ref={scrollRef}
                 style={{
@@ -31,8 +31,8 @@ const HourlyConditionsCard = ({ currentConditions }) => {
             >
                 <div className="site-card-wrapper">
                     <Space size={40}>
-                        {displayData.map((singleHourData) => {
-                            return HourlyConditionsListItem(singleHourData);
+                        {displayData.map((singleDayData) => {
+                            return SingleDayListItem(singleDayData);
                         })}
                     </Space>
                 </div>
@@ -41,4 +41,4 @@ const HourlyConditionsCard = ({ currentConditions }) => {
     );
 };
 
-export default HourlyConditionsCard;
+export default DailyConditionsCard;

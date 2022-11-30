@@ -14,7 +14,7 @@ const GetDetailedConditions = (currentConditions) => {
 
     //Get the index of time now in the Api array
     let index = -1;
-    currentConditions.hourly?.time.find((item, indexOfTimeNow) => {
+    currentConditions.hourly.time.find((item, indexOfTimeNow) => {
         if (item === timeNow) {
             index = indexOfTimeNow;
         }

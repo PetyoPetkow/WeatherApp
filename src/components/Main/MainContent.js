@@ -3,14 +3,21 @@ import { useEffect, useState } from "react";
 import CurrentConditionsCard from "../Card/CurrentConditionsCard/CurrentConditionsCard";
 import DetailedConditionsCard from "../Card/DetailedConditionsCard/DetailedConditionsCard";
 import HourlyConditionsCard from "../Card/HourlyConditionsCard/HourlyConditionsCard";
-import DailyConditionsCard from "../Card/DailyConditionsCard";
-import { getAll, getOneBySearch } from "../../services/cardService";
+import DailyConditionsCard from "../Card/DailyConditionsCard/DailyConditionsCard";
+import {
+    getAll,
+    getOneBySearch,
+    getDailyConditions,
+    getDailyConditionsBySearch,
+} from "../../services/cardService";
 
 const MainContent = ({ displayCity }) => {
     const [currentConditions, setCurrentConditions] = useState({});
+    const [dailyConditions, setDailyConditions] = useState({});
 
     useEffect(() => {
         getAll().then((res) => setCurrentConditions(res.data));
+        getDailyConditions().then((res) => setDailyConditions(res.data));
     }, []);
 
     useEffect(() => {
@@ -18,6 +25,9 @@ const MainContent = ({ displayCity }) => {
             getOneBySearch(displayCity).then((res) =>
                 setCurrentConditions(res.data)
             );
+            getDailyConditionsBySearch(displayCity).then((res) => {
+                setDailyConditions(res.data);
+            });
         }
     }, [displayCity]);
 
@@ -36,7 +46,9 @@ const MainContent = ({ displayCity }) => {
                     <HourlyConditionsCard
                         currentConditions={currentConditions}
                     ></HourlyConditionsCard>
-                    <DailyConditionsCard></DailyConditionsCard>
+                    <DailyConditionsCard
+                        dailyConditions={dailyConditions}
+                    ></DailyConditionsCard>
                 </>
             )}
         </>
