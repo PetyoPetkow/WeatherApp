@@ -7,7 +7,6 @@ const DetailedConditiionsCard = ({ currentConditions, displayCity }) => {
     let detailedConditions;
 
     detailedConditions = GetDetailedConditions(currentConditions);
-
     return (
         <Card
             title={`Weather details for ${displayCity?.city}`}

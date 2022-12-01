@@ -1,26 +1,25 @@
 const GetDetailedConditions = (currentConditions) => {
     //Get time now in the format that the Api uses
     let date = new Date();
-    let timeNow =
-        date.getFullYear() +
-        "-" +
-        (date.getMonth() + 1) +
-        "-" +
-        date.getDate() +
-        "T" +
-        date.getHours() +
-        ":" +
-        "00";
+
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hours = date.getHours();
+
+    let timeNow = `${year}-${month < 10 ? "0" + month : month}-${
+        day < 10 ? "0" + day : day
+    }T${hours}:00`;
 
     //Get the index of time now in the Api array
     let index = -1;
     currentConditions.hourly.time.find((item, indexOfTimeNow) => {
         if (item === timeNow) {
             index = indexOfTimeNow;
+            console.log("index is" + indexOfTimeNow);
         }
         return null;
     });
-
     const hourlyConditions = currentConditions.hourly;
     const hourlyUnits = currentConditions.hourly_units;
 
