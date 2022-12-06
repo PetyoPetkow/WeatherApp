@@ -1,5 +1,5 @@
 import { Card, Row, Col } from "antd";
-
+import { toast } from "react-toastify";
 import { dynamicClass } from "./CurrentConditionsDinamicBackgroundClass";
 import ConditionsIcon from "../common/ConditionsIcon";
 import WEATHER_CODES from "../../../constants/CardConstants/WEATHER_CODES";
@@ -29,6 +29,7 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
             await setDoc(doc(db, "users", user.user.uid), {
                 favCity: displayCity.city,
             });
+            notify(displayCity.city, "added");
         }
     };
 
@@ -38,8 +39,20 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
             await setDoc(doc(db, "users", user.user.uid), {
                 favCity: "",
             });
+            notify(displayCity.city, "removed");
         }
     };
+
+    const notify = (city, action) =>
+        toast(`${city} was ${action} as your favorite city!`, {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            theme: "light",
+        });
 
     return (
         <Card
@@ -68,6 +81,7 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
                 {user ? (
                     isFavouriteValue ? (
                         <button
+                            className="favorite-icon"
                             style={{
                                 backgroundColor: "transparent",
                                 border: "0px",
@@ -82,6 +96,7 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
                         </button>
                     ) : (
                         <button
+                            className="favorite-icon"
                             style={{
                                 backgroundColor: "transparent",
                                 border: "0px",

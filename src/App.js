@@ -10,7 +10,8 @@ import { LoginFrom } from "./authentication/login/LoginForm";
 import { getDoc, doc, collection } from "firebase/firestore";
 import { CitiesContext } from "./CitiesContext";
 import { db } from "./config/firebase";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const { Header, Footer } = Layout;
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
                     isFavourite: [isFavourite, setIsFavourite],
                 }}
             >
+                <ToastContainer />
                 <div className="App">
                     <Layout id="mainLayout">
                         <Header style={{ height: "15vh" }}>
@@ -111,9 +113,7 @@ function App() {
                             ></Col>
                         </Row>
 
-                        <Footer style={{ backgroundColor: "#001529" }}>
-                            footer
-                        </Footer>
+                        <Footer>footer</Footer>
                     </Layout>
                 </div>
             </CitiesContext.Provider>
