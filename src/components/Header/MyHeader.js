@@ -3,6 +3,7 @@ import { UserContext } from "../../UserContext";
 import SearchBar from "../SerachBar/SearchBar";
 import { NavLink } from "react-router-dom";
 import { Button, Space } from "antd";
+import { onAuthStateChanged } from "firebase/auth";
 
 const MyHeader = ({ onSearchHandler }) => {
     const { user, setUser } = useContext(UserContext);
@@ -17,7 +18,7 @@ const MyHeader = ({ onSearchHandler }) => {
             <SearchBar onSearchHandler={onSearchHandler}></SearchBar>
             {user ? (
                 <div style={{ color: "white", float: "right" }}>
-                    Hello, {user?.user.email}
+                    Hello, {user.user.displayName}
                 </div>
             ) : (
                 <div style={{ float: "right" }}>
