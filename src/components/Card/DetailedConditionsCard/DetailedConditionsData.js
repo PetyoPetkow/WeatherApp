@@ -16,7 +16,6 @@ const GetDetailedConditions = (currentConditions) => {
     currentConditions.hourly.time.find((item, indexOfTimeNow) => {
         if (item === timeNow) {
             index = indexOfTimeNow;
-            console.log("index is" + indexOfTimeNow);
         }
         return null;
     });

@@ -13,7 +13,9 @@ const DailyConditionsCard = (dailyConditions) => {
     const scrollRef = useHorizontalScroll();
 
     useEffect(() => {
-        setDisplayData(getValuesFromArrayForTheNextWeek(dailyConditions));
+        if (dailyConditions) {
+            setDisplayData(getValuesFromArrayForTheNextWeek(dailyConditions));
+        }
     }, [dailyConditions]);
 
     return (

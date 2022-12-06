@@ -5,8 +5,17 @@ import ConditionsIcon from "../common/ConditionsIcon";
 import WEATHER_CODES from "../../../constants/CardConstants/WEATHER_CODES";
 
 import "../../../App.css";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../UserContext";
+import { CitiesContext } from "../../../CitiesContext";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../../config/firebase";
 
 const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
+    const { user, setUser } = useContext(UserContext);
+    const { isFavourite } = useContext(CitiesContext);
+    const [isFavouriteValue, setIsFavouriteValue] = isFavourite;
+
     let date = new Date();
     let time = date.getHours() + ":" + date.getMinutes();
 
@@ -14,11 +23,29 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
         return obj.code === currentConditions.current_weather?.weathercode;
     });
 
+    const addFavourite = async () => {
+        if (!isFavouriteValue) {
+            setIsFavouriteValue(true);
+            await setDoc(doc(db, "users", user.user.uid), {
+                favCity: displayCity.city,
+            });
+        }
+    };
+
+    const removeFavourite = async (isFavouriteValue) => {
+        if (isFavouriteValue) {
+            setIsFavouriteValue(false);
+            await setDoc(doc(db, "users", user.user.uid), {
+                favCity: "",
+            });
+        }
+    };
+
     return (
         <Card
             bordered={false}
             className={dynamicClass(
-                currentConditions.current_weather.weathercode
+                currentConditions?.current_weather.weathercode
             )}
         >
             <h2
@@ -35,7 +62,40 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
                     borderTopRightRadius: "10px",
                 }}
             >
-                {displayCity.city} at {time} pm
+                <span>
+                    {displayCity?.city} at {time} pm
+                </span>
+                {user ? (
+                    isFavouriteValue ? (
+                        <button
+                            style={{
+                                backgroundColor: "transparent",
+                                border: "0px",
+                                width: "40px",
+                                right: "5px",
+                                top: "0px",
+                                position: "absolute",
+                            }}
+                            onClick={removeFavourite}
+                        >
+                            <img src="../icons/favouriteIcon/remove-bookmark-icon.svg"></img>
+                        </button>
+                    ) : (
+                        <button
+                            style={{
+                                backgroundColor: "transparent",
+                                border: "0px",
+                                width: "40px",
+                                right: "5px",
+                                top: "0px",
+                                position: "absolute",
+                            }}
+                            onClick={addFavourite}
+                        >
+                            <img src="../icons/favouriteIcon/add-bookmark-icon.svg"></img>
+                        </button>
+                    )
+                ) : null}
             </h2>
 
             <Row gutter={16}>

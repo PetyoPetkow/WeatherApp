@@ -11,7 +11,7 @@ import {
     getDailyConditionsBySearch,
 } from "../../services/cardService";
 
-const MainContent = ({ displayCity }) => {
+const MainContent = ({ displayCity, isFavourite }) => {
     const [currentConditions, setCurrentConditions] = useState({});
     const [dailyConditions, setDailyConditions] = useState({});
 
@@ -38,6 +38,7 @@ const MainContent = ({ displayCity }) => {
                     <CurrentConditionsCard
                         currentConditions={currentConditions}
                         displayCity={displayCity}
+                        isFavourite={isFavourite}
                     ></CurrentConditionsCard>
                     <DetailedConditionsCard
                         currentConditions={currentConditions}

@@ -4,12 +4,13 @@ import RightSideBar from "../RightSideBar/RightSideBar";
 
 const { Content, Sider } = Layout;
 
-const MainWrapper = ({ displayCity }) => {
+const MainWrapper = ({ displayCity, isFavourite }) => {
     return (
         <Layout style={{ height: "100%", backgroundColor: "transparent" }}>
             <Content>
                 <MainContent
                     displayCity={displayCity}
+                    isFavourite={isFavourite}
                     style={{ display: "block" }}
                 ></MainContent>
             </Content>
