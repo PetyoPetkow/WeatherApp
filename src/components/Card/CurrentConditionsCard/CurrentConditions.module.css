@@ -1,0 +1,41 @@
+.favoriteIcon{
+    background-color: transparent;
+    border: 0px;
+    width: 40px;
+    right: 5px;
+    top: 0px;
+    position: absolute;
+}
+
+.favoriteIcon:hover{
+    width: 43px !important;
+}
+
+.currentConditionsCardHeading{
+    margin-top: -35px;
+    margin-left: -35px;
+    margin-right: -35px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.currentConditionsTemperature{
+    font-size: 92px;
+    font-weight: bold;
+    color: white;
+}
+
+.currentConditionsIcon{
+    float: right;
+}
+
+.currentConditionsSummary{
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+}

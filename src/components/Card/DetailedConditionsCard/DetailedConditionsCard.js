@@ -1,5 +1,5 @@
 import { Card, Row } from "antd";
-import "../../../App.css";
+import style from "./DetailedConditions.module.css";
 import GetDetailedConditions from "./DetailedConditionsData";
 import { IndicatorListItem } from "./IndicatorListItem";
 
@@ -10,7 +10,7 @@ const DetailedConditiionsCard = ({ currentConditions, displayCity }) => {
     return (
         <Card
             title={`Weather details for ${displayCity?.city}`}
-            style={{ backgroundColor: "#e6e6e6" }}
+            className={style.detailedConditiionsCard}
         >
             <div className="site-card-wrapper">
                 <Row>

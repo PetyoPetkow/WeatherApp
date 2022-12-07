@@ -1,0 +1,12 @@
+.mainLayout{
+    height: 100%;
+    background-color: transparent
+}
+
+.mainContentContainer{
+    display: block
+}
+
+.mainSizer{
+    background-color: transparent
+}

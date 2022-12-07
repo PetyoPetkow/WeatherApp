@@ -12,12 +12,12 @@ import { CitiesContext } from "./CitiesContext";
 import { db } from "./config/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import style from "./App.module.css";
 const { Header, Footer } = Layout;
 
 function App() {
     const [user, setUser] = useState(null);
     const [displayCity, setDisplayCity] = useState();
-    const [favourites, setFavourites] = useState();
     const [location, setLocation] = useState("Veliko Tarnovo");
     const [favo, setFavo] = useState();
 
@@ -34,8 +34,15 @@ function App() {
     };
 
     useEffect(() => {
-        if (user) {
+        setFavo();
+    }, []);
+
+    useEffect(() => {
+        console.log("user is " + user);
+        if (user != null) {
             getFavouriteCity();
+        } else {
+            setFavo(null);
         }
     }, [user]);
 
@@ -66,23 +73,17 @@ function App() {
                 <ToastContainer />
                 <div className="App">
                     <Layout id="mainLayout">
-                        <Header style={{ height: "15vh" }}>
+                        <Header className={style.header}>
                             <MyHeader
                                 onSearchHandler={onSearchHandler}
                             ></MyHeader>
                         </Header>
-                        <Row
-                            style={{
-                                backgroundColor: "transparent",
-                                marginTop: "40px",
-                                marginBottom: "40px",
-                            }}
-                        >
+                        <Row className={style.appGridRow}>
                             <Col
                                 sm={0}
                                 md={0}
                                 lg={4}
-                                style={{ height: "100vh" }}
+                                className={style.appGridSideCol}
                             ></Col>
                             <Col xs={24} sm={24} md={24} lg={16}>
                                 <Routes>
@@ -91,7 +92,7 @@ function App() {
                                         element={
                                             <MainWrapper
                                                 displayCity={displayCity}
-                                                isFavourite={isFavourite}
+                                                isFavourite={favo}
                                             ></MainWrapper>
                                         }
                                     ></Route>
@@ -109,7 +110,7 @@ function App() {
                                 sm={0}
                                 md={0}
                                 lg={4}
-                                style={{ height: "100vh" }}
+                                className={style.appGridSideCol}
                             ></Col>
                         </Row>
 

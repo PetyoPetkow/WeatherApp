@@ -1,0 +1,25 @@
+.detailedConditionsCard{
+    background-color: #e6e6e6;
+}
+
+.indicatorCol{
+    font-weight: bold;
+    font-size: 20px;
+    height: 100%;
+    align-items: middle;
+    padding: 10px;
+}
+
+.indicatorImg{
+    margin-left: 10px
+}
+
+.indicatorTitle{
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.indicatorValue{
+    float: right
+}

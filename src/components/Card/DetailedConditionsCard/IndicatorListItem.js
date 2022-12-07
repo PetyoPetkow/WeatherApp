@@ -1,35 +1,18 @@
 import { Col } from "antd";
+import style from "./DetailedConditions.module.css";
 
 export const IndicatorListItem = ({ iconSrc, title, value, units }) => {
     return (
-        <Col
-            key={title}
-            span={12}
-            style={{
-                fontWeight: "bold",
-                fontSize: "20px",
-                height: "100%",
-                alignItems: "middle",
-                padding: "10px",
-            }}
-        >
+        <Col key={title} span={12} className={style.indicatorCol}>
             <img
                 src={iconSrc}
                 width="30px"
                 alt="icon"
-                style={{ marginLeft: "10px" }}
+                className={style.indicatorImg}
             ></img>
-            <span
-                style={{
-                    marginLeft: "10px",
-                    display: "inline-block",
-                    verticalАlign: "middle",
-                }}
-            >
-                {title}
-            </span>
+            <span className={style.indicatorTitle}>{title}</span>
 
-            <span style={{ float: "right" }}>{` ${value} ${units}`}</span>
+            <span className={style.indicatorValue}>{` ${value} ${units}`}</span>
         </Col>
     );
 };

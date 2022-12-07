@@ -5,7 +5,7 @@ import SingleDayListItem from "./SingleDayListItem";
 import { useHorizontalScroll } from "../common/useHorizontalScroll";
 import { getValuesFromArrayForTheNextWeek } from "./getValuesFromArrayForTheNextWeek";
 
-import "../../../App.css";
+import style from "./DailyConditions.module.css";
 
 const DailyConditionsCard = (dailyConditions) => {
     const [displayData, setDisplayData] = useState([]);
@@ -19,18 +19,9 @@ const DailyConditionsCard = (dailyConditions) => {
     }, [dailyConditions]);
 
     return (
-        //TODO: Map each hour to a card
         <>
             <h2>Daily forecast</h2>
-            <Card
-                ref={scrollRef}
-                style={{
-                    overflowY: "scroll",
-                    overflowX: "hidden",
-                    whiteSpace: "nowrap",
-                    backgroundColor: "#e6e6e6",
-                }}
-            >
+            <Card ref={scrollRef} className={style.dailyConditionsCard}>
                 <div className="site-card-wrapper">
                     <Space size={40}>
                         {displayData.map((singleDayData) => {

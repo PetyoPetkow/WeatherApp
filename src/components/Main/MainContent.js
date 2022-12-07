@@ -38,7 +38,6 @@ const MainContent = ({ displayCity, isFavourite }) => {
                     <CurrentConditionsCard
                         currentConditions={currentConditions}
                         displayCity={displayCity}
-                        isFavourite={isFavourite}
                     ></CurrentConditionsCard>
                     <DetailedConditionsCard
                         currentConditions={currentConditions}

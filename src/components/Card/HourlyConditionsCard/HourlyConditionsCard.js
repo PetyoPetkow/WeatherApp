@@ -5,7 +5,7 @@ import HourlyConditionsListItem from "./HourlyConditionsListItem";
 import { useHorizontalScroll } from "../common/useHorizontalScroll";
 import { getValuesFromArrayForTheNextTwentyFourHours } from "./getValuesFromArrayForTheNextTwentyFourHours";
 
-import "../../../App.css";
+import style from "./HourlyConditions.module.css";
 
 const HourlyConditionsCard = ({ currentConditions }) => {
     const [displayData, setDisplayData] = useState([]);
@@ -20,15 +20,7 @@ const HourlyConditionsCard = ({ currentConditions }) => {
     return (
         <>
             <h2>Hourly forecast</h2>
-            <Card
-                ref={scrollRef}
-                style={{
-                    overflowY: "scroll",
-                    overflowX: "hidden",
-                    whiteSpace: "nowrap",
-                    backgroundColor: "#e6e6e6",
-                }}
-            >
+            <Card ref={scrollRef} className={style.hourlyConditionsCard}>
                 <div className="site-card-wrapper">
                     <Space size={40}>
                         {displayData.map((singleHourData) => {

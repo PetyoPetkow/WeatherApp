@@ -11,7 +11,6 @@ const SearchBar = ({ onSearchHandler }) => {
 
     const [search, setSearch] = useState();
     const [searchValue, setSearchValue] = useState("");
-    // const [location, setLocation] = useState("Veliko Tarnovo");
 
     const key = "682500PcukwQUtq1UDd6XimUfAmBA5HL";
     let URL = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${key}&q=${locationValue}`;
@@ -43,24 +42,15 @@ const SearchBar = ({ onSearchHandler }) => {
     };
 
     return (
-        <div>
-            <Search
-                placeholder="input search text"
-                allowClear
-                enterButton="Search"
-                size="large"
-                onSearch={onSearch}
-                value={searchValue}
-                onChange={onChangeHandler}
-                style={{
-                    width: 300,
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    marginTop: 30,
-                    display: "block",
-                }}
-            />
-        </div>
+        <Search
+            placeholder="Search fo a city"
+            allowClear
+            enterButton="Search"
+            size="large"
+            onSearch={onSearch}
+            value={searchValue}
+            onChange={onChangeHandler}
+        />
     );
 };
 

@@ -10,7 +10,7 @@ export const getValuesFromArrayForTheNextTwentyFourHours = (arr) => {
                     ? index + " pm"
                     : index - 12 + " pm",
 
-            weathercode: hourlyConditions.weathercode[index],
+            weathercode: hourlyConditions?.weathercode[index],
             temperature:
                 hourlyConditions.temperature_2m[index] +
                 arr.hourly_units.temperature_2m, //izmisli neshto za tuka che ne moje da se gleda
