@@ -6,52 +6,52 @@ import { useContext } from "react";
 const { Search } = Input;
 
 const SearchBar = ({ onSearchHandler }) => {
-    const { location } = useContext(CitiesContext);
-    const [locationValue, setLocationValue] = location;
+  const { location } = useContext(CitiesContext);
+  const [locationValue, setLocationValue] = location;
 
-    const [search, setSearch] = useState();
-    const [searchValue, setSearchValue] = useState("");
+  const [search, setSearch] = useState();
+  const [searchValue, setSearchValue] = useState("");
 
-    const key = "682500PcukwQUtq1UDd6XimUfAmBA5HL";
-    let URL = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${key}&q=${locationValue}`;
+  const key = "682500PcukwQUtq1UDd6XimUfAmBA5HL";
+  let URL = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${key}&q=${locationValue}`;
 
-    useEffect(() => {
-        {
-            locationValue &&
-                Axios.get(URL).then((res) => {
-                    const data = res.data;
-                    setSearch({
-                        city: data[0].EnglishName,
-                        longitude: data[0].GeoPosition.Longitude,
-                        latitude: data[0].GeoPosition.Latitude,
-                    });
-                });
-        }
-    }, [locationValue]);
+  useEffect(() => {
+    {
+      locationValue &&
+        Axios.get(URL).then((res) => {
+          const data = res.data;
+          setSearch({
+            city: data[0].EnglishName,
+            longitude: data[0].GeoPosition.Longitude,
+            latitude: data[0].GeoPosition.Latitude,
+          });
+        });
+    }
+  }, [locationValue]);
 
-    useEffect(() => {
-        if (locationValue) onSearchHandler(search);
-    }, [search]);
+  useEffect(() => {
+    if (locationValue) onSearchHandler(search);
+  }, [search]);
 
-    const onSearch = () => {
-        setLocationValue(searchValue);
-    };
+  const onSearch = () => {
+    setLocationValue(searchValue);
+  };
 
-    const onChangeHandler = (e) => {
-        setSearchValue(e.target.value);
-    };
+  const onChangeHandler = (e) => {
+    setSearchValue(e.target.value);
+  };
 
-    return (
-        <Search
-            placeholder="Search fo a city"
-            allowClear
-            enterButton="Search"
-            size="large"
-            onSearch={onSearch}
-            value={searchValue}
-            onChange={onChangeHandler}
-        />
-    );
+  return (
+    <Search
+      placeholder="Search fo a city"
+      allowClear
+      enterButton="Search"
+      size="large"
+      onSearch={onSearch}
+      value={searchValue}
+      onChange={onChangeHandler}
+    />
+  );
 };
 
 export default SearchBar;

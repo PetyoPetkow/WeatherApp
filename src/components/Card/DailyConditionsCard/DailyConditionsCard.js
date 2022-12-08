@@ -8,30 +8,30 @@ import { getValuesFromArrayForTheNextWeek } from "./getValuesFromArrayForTheNext
 import style from "./DailyConditions.module.css";
 
 const DailyConditionsCard = (dailyConditions) => {
-    const [displayData, setDisplayData] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
 
-    const scrollRef = useHorizontalScroll();
+  const scrollRef = useHorizontalScroll();
 
-    useEffect(() => {
-        if (dailyConditions) {
-            setDisplayData(getValuesFromArrayForTheNextWeek(dailyConditions));
-        }
-    }, [dailyConditions]);
+  useEffect(() => {
+    if (dailyConditions) {
+      setDisplayData(getValuesFromArrayForTheNextWeek(dailyConditions));
+    }
+  }, [dailyConditions]);
 
-    return (
-        <>
-            <h2>Daily forecast</h2>
-            <Card ref={scrollRef} className={style.dailyConditionsCard}>
-                <div className="site-card-wrapper">
-                    <Space size={40}>
-                        {displayData.map((singleDayData) => {
-                            return SingleDayListItem(singleDayData);
-                        })}
-                    </Space>
-                </div>
-            </Card>
-        </>
-    );
+  return (
+    <>
+      <h2>Daily forecast</h2>
+      <Card ref={scrollRef} className={style.dailyConditionsCard}>
+        <div className="site-card-wrapper">
+          <Space size={40}>
+            {displayData.map((singleDayData) => {
+              return SingleDayListItem(singleDayData, displayData.length);
+            })}
+          </Space>
+        </div>
+      </Card>
+    </>
+  );
 };
 
 export default DailyConditionsCard;

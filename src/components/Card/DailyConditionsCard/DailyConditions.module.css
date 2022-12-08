@@ -10,3 +10,8 @@
 .singleItemTempRange{
     font-size: 15px
 } 
+
+.divider {
+    border-left: 1px solid lightgray;
+    height: 120px
+}

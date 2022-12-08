@@ -1,12 +1,12 @@
 .mainLayout{
     height: 100%;
-    background-color: transparent
+    background-color: transparent!important
 }
 
 .mainContentContainer{
     display: block
 }
 
-.mainSizer{
-    background-color: transparent
+.mainSider{
+    background-color: transparent!important
 }
