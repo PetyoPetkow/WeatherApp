@@ -1,8 +1,7 @@
 @import 'antd/dist/antd.css';
 
 #mainLayout{
-  background: linear-gradient(#ffffff, #ffffff);
-  background-repeat: no-repeat;
+background: linear-gradient(135deg, rgb(237, 252, 255) 60%, rgb(165, 214, 255));  background-repeat: no-repeat;
   background-size: cover;
 }
 
