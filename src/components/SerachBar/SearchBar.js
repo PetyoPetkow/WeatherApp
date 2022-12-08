@@ -13,7 +13,7 @@ const SearchBar = ({ onSearchHandler }) => {
     const [searchValue, setSearchValue] = useState("");
 
     const key = "682500PcukwQUtq1UDd6XimUfAmBA5HL";
-    let URL = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${key}&q=${locationValue}`;
+    let URL = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${key}&q=${locationValue}`;
 
     useEffect(() => {
         {
