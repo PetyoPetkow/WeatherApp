@@ -81,11 +81,7 @@ export const RegisterFrom = () => {
                     <Input.Password />
                 </Form.Item>
 
-                <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{ offset: 8, span: 16 }}
-                >
+                <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
@@ -93,16 +89,7 @@ export const RegisterFrom = () => {
                     <Button
                         type="primary"
                         htmlType="submit"
-                        onClick={() =>
-                            register(
-                                auth,
-                                registerEmail,
-                                registerPassword,
-                                navigate,
-                                setUser,
-                                name
-                            )
-                        }
+                        onClick={() => register(auth, registerEmail, registerPassword, navigate, setUser, name)}
                     >
                         Submit
                     </Button>

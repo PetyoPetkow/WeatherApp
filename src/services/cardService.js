@@ -10,9 +10,7 @@ const getFormatedDate = (date) => {
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
 
-    fullDate = `${year}-${month < 10 ? "0" + month : month}-${
-        day < 10 ? "0" + day : day
-    }`;
+    fullDate = `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`;
 
     return fullDate;
 };
@@ -37,10 +35,6 @@ const dailyPatternURL = (latitude, longitude, start_date, end_date) => {
     return `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum&start_date=${start_date}&end_date=${end_date}&timezone=EET`;
 };
 
-export const getAll = () => {
-    return Axios.get(initialURL);
-};
-
 export const getOneBySearch = (displayCity) => {
     return Axios.get(patternURL(displayCity.latitude, displayCity.longitude));
 };
@@ -51,11 +45,6 @@ export const getDailyConditions = () => {
 
 export const getDailyConditionsBySearch = (displayCity) => {
     return Axios.get(
-        dailyPatternURL(
-            displayCity.latitude,
-            displayCity.longitude,
-            getFormatedDate(),
-            getFormatedEndDate()
-        )
+        dailyPatternURL(displayCity.latitude, displayCity.longitude, getFormatedDate(), getFormatedEndDate())
     );
 };

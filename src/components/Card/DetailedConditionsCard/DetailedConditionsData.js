@@ -7,9 +7,7 @@ const GetDetailedConditions = (currentConditions) => {
     let day = date.getDate();
     let hours = date.getHours();
 
-    let timeNow = `${year}-${month < 10 ? "0" + month : month}-${
-        day < 10 ? "0" + day : day
-    }T${hours}:00`;
+    let timeNow = `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}T${hours}:00`;
 
     //Get the index of time now in the Api array
     let index = -1;
@@ -25,15 +23,13 @@ const GetDetailedConditions = (currentConditions) => {
     //Return needed indicators by the index that matches to the time's index
     return [
         {
-            iconSrc:
-                "../../../icons/indicatorIcons/temperature-svgrepo-com.svg",
+            iconSrc: "../../../icons/indicatorIcons/temperature-svgrepo-com.svg",
             title: "feelsLike",
             value: hourlyConditions.apparent_temperature[index],
             units: hourlyUnits.apparent_temperature,
         },
         {
-            iconSrc:
-                "../../../icons/indicatorIcons/dew-point-filled-svgrepo-com.svg",
+            iconSrc: "../../../icons/indicatorIcons/dew-point-filled-svgrepo-com.svg",
             title: "dewpoint",
             value: hourlyConditions.dewpoint_2m[index],
             units: hourlyUnits.dewpoint_2m,
@@ -57,8 +53,7 @@ const GetDetailedConditions = (currentConditions) => {
             units: hourlyUnits.windspeed_10m,
         },
         {
-            iconSrc:
-                "../../../icons/indicatorIcons/eye-close-up-visibility-button-svgrepo-com.svg",
+            iconSrc: "../../../icons/indicatorIcons/eye-close-up-visibility-button-svgrepo-com.svg",
             title: "visibility",
             value: hourlyConditions.visibility[index],
             units: hourlyUnits.visibility,

@@ -6,23 +6,17 @@ const CurrentConditionsIcon = ({ data, size }) => {
     } else if (data <= 2) {
         src = "../../../icons/weatherIcons/120px-Antu_weather-clouds.svg.png";
     } else if (data <= 48) {
-        src =
-            "../../../icons/weatherIcons/120px-Antu_weather-many-clouds.svg.png";
+        src = "../../../icons/weatherIcons/120px-Antu_weather-many-clouds.svg.png";
     } else if (data <= 67) {
-        src =
-            "../../../icons/weatherIcons/Antu_weather-showers-scattered.svg.png";
+        src = "../../../icons/weatherIcons/Antu_weather-showers-scattered.svg.png";
     } else if (data <= 77) {
-        src =
-            "../../../icons/weatherIcons/120px-Antu_weather-snow-scattered.svg.png";
+        src = "../../../icons/weatherIcons/120px-Antu_weather-snow-scattered.svg.png";
     } else if (data <= 82) {
-        src =
-            "../../../icons/weatherIcons/Antu_weather-showers-scattered.svg.png";
+        src = "../../../icons/weatherIcons/Antu_weather-showers-scattered.svg.png";
     } else if (data <= 86) {
-        src =
-            "../../../icons/weatherIcons/120px-Antu_weather-snow-scattered.svg.png";
+        src = "../../../icons/weatherIcons/120px-Antu_weather-snow-scattered.svg.png";
     } else if (data <= 99) {
-        src =
-            "../../../icons/weatherIcons/120px-Antu_weather-storm-day.svg.png";
+        src = "../../../icons/weatherIcons/120px-Antu_weather-storm-day.svg.png";
     }
     // switch (data) {
     //     case 0:

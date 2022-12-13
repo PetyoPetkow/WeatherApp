@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 import { Button, Space } from "antd";
 
 import { UserContext } from "../../UserContext";
-import SearchBar from "../SerachBar/SearchBar";
 import { signOut, getAuth } from "firebase/auth";
 import { CitiesContext } from "../../CitiesContext";
 import { Row, Col } from "antd";
 
 import style from "./MyHeader.module.css";
+import Search from "../SerachBar/Search";
 
 const MyHeader = ({ onSearchHandler }) => {
     const auth = getAuth();
@@ -24,22 +24,15 @@ const MyHeader = ({ onSearchHandler }) => {
                 </NavLink>
             </Col>
             <Col xs={{ span: 24, offset: 1 }} lg={{ span: 6, offset: 1 }}>
-                <SearchBar onSearchHandler={onSearchHandler}></SearchBar>{" "}
+                <Search onSearchChange={onSearchHandler}></Search>
             </Col>
             <Col xs={{ span: 24, offset: 1 }} lg={{ span: 6, offset: 3 }}>
                 <div>
                     {user ? (
                         <Space size={20}>
-                            <div className={style.greetingBox}>
-                                Hello, {user.user.displayName}
-                            </div>
+                            <div className={style.greetingBox}>Hello, {user.user.displayName}</div>
                             <Button
-                                onClick={() =>
-                                    signOut(auth).then(
-                                        setUser(null),
-                                        setLocationValue("Veliko Tarnovo")
-                                    )
-                                }
+                                onClick={() => signOut(auth).then(setUser(null))} //, setDisplayCity("..."))} dobavi go posle
                                 type="default"
                                 ghost
                             >
