@@ -27,7 +27,7 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
     const addFavourite = async () => {
         if (!isFavouriteValue) {
             setIsFavouriteValue(true);
-            await setDoc(doc(db, "users", user.user.uid), {
+            await setDoc(doc(db, "users", user.uid), {
                 favCity: displayCity.city,
                 longitude: displayCity.longitude,
                 latitude: displayCity.latitude,
@@ -39,7 +39,7 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
     const removeFavourite = async (isFavouriteValue) => {
         if (isFavouriteValue) {
             setIsFavouriteValue(false);
-            await deleteDoc(doc(db, "users", user.user.uid));
+            await deleteDoc(doc(db, "users", user.uid));
             notify(displayCity.city, "removed");
         }
     };

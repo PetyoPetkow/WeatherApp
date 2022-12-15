@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyAFV918EoNkKB6adR7j1erZdJ2fGFe7d-Q",
     authDomain: "weatherapp-48bb3.firebaseapp.com",
     projectId: "weatherapp-48bb3",
@@ -11,7 +11,8 @@ const firebaseConfig = {
     appId: "1:830500209538:web:073b96695c4d502fbc059b",
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);
+export const auth = getAuth();
+
 export const db = getFirestore(app);

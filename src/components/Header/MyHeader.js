@@ -30,7 +30,7 @@ const MyHeader = ({ onSearchHandler }) => {
                 <div>
                     {user ? (
                         <Space size={20}>
-                            <div className={style.greetingBox}>Hello, {user.user.displayName}</div>
+                            <div className={style.greetingBox}>Hello, {user.displayName}</div>
                             <Button
                                 onClick={() => signOut(auth).then(setUser(null))} //, setDisplayCity("..."))} dobavi go posle
                                 type="default"

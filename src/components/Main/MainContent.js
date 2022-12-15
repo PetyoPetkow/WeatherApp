@@ -12,11 +12,9 @@ const MainContent = ({ displayCity }) => {
 
     useEffect(() => {
         if (displayCity) {
-            console.log("displayCity", displayCity);
             getOneBySearch(displayCity).then((res) => setCurrentConditions(res.data));
             getDailyConditionsBySearch(displayCity).then((res) => {
                 setDailyConditions(res.data);
-                console.log(displayCity);
             });
         }
     }, [displayCity]);

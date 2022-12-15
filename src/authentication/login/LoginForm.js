@@ -7,12 +7,13 @@ import { Form, Checkbox, Button, Input } from "antd";
 import { UserContext } from "../../UserContext";
 import { login } from "./login";
 
-export const LoginFrom = () => {
+export const LoginForm = () => {
     const navigate = useNavigate();
     const { user, setUser } = useContext(UserContext);
 
     const onFinish = (values) => {
         login(values, auth, navigate, setUser);
+
         console.log("Success:", values);
     };
 
