@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Layout, Row, Col } from "antd";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, redirect, Route, Routes } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { ToastContainer } from "react-toastify";
 
@@ -103,8 +103,8 @@ function App() {
                             <Col xs={24} sm={24} md={24} lg={16}>
                                 <Routes>
                                     <Route path="/" element={<MainWrapper displayCity={displayCity} />}></Route>
-                                    <Route path="/register" element={<RegisterFrom />}></Route>
-                                    <Route path="/login" element={<LoginForm />}></Route>
+                                    <Route path="/register" element={user ? <Navigate to="/" replace /> : <RegisterFrom />} />
+                                    <Route path="/login" element={user ? <Navigate to="/" replace /> : <LoginForm />} />
                                     <Route path="/resetPassword" element={<ResetPassword />}></Route>
                                 </Routes>
                             </Col>

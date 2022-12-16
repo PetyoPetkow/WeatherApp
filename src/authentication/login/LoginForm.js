@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { auth } from "../../config/firebase";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, redirect } from "react-router-dom";
 import { Form, Checkbox, Button, Input } from "antd";
 
 import { UserContext } from "../../UserContext";
@@ -9,7 +9,7 @@ import { login } from "./login";
 
 export const LoginForm = () => {
     const navigate = useNavigate();
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     const onFinish = (values) => {
         login(values, auth, navigate, setUser);
