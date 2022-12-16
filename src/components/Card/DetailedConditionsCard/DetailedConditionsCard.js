@@ -1,7 +1,9 @@
 import { Card, Row } from "antd";
-import style from "./DetailedConditions.module.css";
+
 import GetDetailedConditions from "./DetailedConditionsData";
 import { IndicatorListItem } from "./IndicatorListItem";
+
+import style from "./DetailedConditions.module.css";
 
 const DetailedConditiionsCard = ({ currentConditions, displayCity }) => {
     let detailedConditions;

@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
 import { Layout, Row, Col } from "antd";
-import { Navigate, redirect, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { ToastContainer } from "react-toastify";
 
+import { db, auth } from "./config/firebase";
 import MainWrapper from "./components/Main/MainWrapper";
 import MyHeader from "./components/Header/MyHeader";
 import { RegisterFrom } from "./authentication/register/RegisterForm";
 import { LoginForm } from "./authentication/login/LoginForm";
+import { ResetPassword } from "./authentication/ResetPassword/ResetPassword";
 import { UserContext } from "./UserContext";
 import { CitiesContext } from "./CitiesContext";
-import { db, auth } from "./config/firebase";
 import { INITIAL_DISPLAY_CITY } from "./constants/CardConstants/INITIAL_DISPLAY_CITY";
 
 import "react-toastify/dist/ReactToastify.css";
 import style from "./App.module.css";
 import "./App.css";
-import { ResetPassword } from "./authentication/ResetPassword/ResetPassword";
+
 const { Header, Footer } = Layout;
 
 function App() {
     const [user, setUser] = useState(null);
-    const [location, setLocation] = useState();
     const [favoriteCity, setFavoriteCity] = useState();
-    const [isFavourite, setIsFavourite] = useState(false);
     const [displayCity, setDisplayCity] = useState(INITIAL_DISPLAY_CITY);
+    const [isFavourite, setIsFavourite] = useState(false);
 
     const onSearchHandler = (data) => {
         setDisplayCity({
@@ -34,6 +34,7 @@ function App() {
         });
     };
 
+    //get user's favorite city and add it to favoriteCity and DisplayCity states
     const getFavouriteCity = async () => {
         const fav = await getDoc(doc(db, "users", user.uid));
 
@@ -51,13 +52,14 @@ function App() {
         }
     };
 
+    //set current user to the one saved in local storage
     useEffect(() => {
         var storedUser = JSON.parse(localStorage.getItem("authUser"));
         if (storedUser) setUser({ email: storedUser.email, displayName: storedUser.displayName, uid: storedUser.uid });
-        console.log(auth.currentUser);
     }, []);
 
-    auth.onAuthStateChanged(function (user) {
+    //on authentication save the user to local storage
+    auth.onAuthStateChanged(() => {
         if (user) {
             localStorage.setItem("authUser", JSON.stringify(user));
         } else {
@@ -65,6 +67,7 @@ function App() {
         }
     });
 
+    //on logged user get favourite city, on logged out set display city to the initial state
     useEffect(() => {
         if (user) {
             getFavouriteCity();
@@ -73,6 +76,7 @@ function App() {
         }
     }, [user]);
 
+    //check if the display city is the same as the user's favourite and change the state of isFavourite
     useEffect(() => {
         if (user) {
             if (favoriteCity?.city.toLowerCase() === displayCity?.city.toLowerCase()) {
@@ -87,7 +91,6 @@ function App() {
         <UserContext.Provider value={{ user, setUser }}>
             <CitiesContext.Provider
                 value={{
-                    location: [location, setLocation],
                     isFavourite: [isFavourite, setIsFavourite],
                 }}
             >

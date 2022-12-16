@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+
 import { AsyncPaginate } from "react-select-async-paginate";
-import { CitiesContext } from "../../CitiesContext";
 
 const Search = ({ onSearchChange }) => {
     const [search, setSearch] = useState(null);
-    const { location } = useContext(CitiesContext);
-    const [locationValue, setLocationValue] = location;
 
     const geoApiOptions = {
         method: "GET",

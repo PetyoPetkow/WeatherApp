@@ -4,7 +4,7 @@ import CurrentConditionsCard from "../Card/CurrentConditionsCard/CurrentConditio
 import DetailedConditionsCard from "../Card/DetailedConditionsCard/DetailedConditionsCard";
 import HourlyConditionsCard from "../Card/HourlyConditionsCard/HourlyConditionsCard";
 import DailyConditionsCard from "../Card/DailyConditionsCard/DailyConditionsCard";
-import { getAll, getOneBySearch, getDailyConditions, getDailyConditionsBySearch } from "../../services/cardService";
+import { getOneBySearch, getDailyConditionsBySearch } from "../../services/cardService";
 
 const MainContent = ({ displayCity }) => {
     const [currentConditions, setCurrentConditions] = useState({});

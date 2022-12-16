@@ -1,5 +1,7 @@
 import { Fragment } from "react";
+
 import ConditionsIcon from "../common/ConditionsIcon";
+
 import style from "./HourlyConditions.module.css";
 const HourlyConditionsListItem = (data) => {
     return (

@@ -1,4 +1,5 @@
 import ConditionsIcon from "../common/ConditionsIcon";
+
 import style from "./DailyConditions.module.css";
 
 const SingleDayListItem = (data) => {

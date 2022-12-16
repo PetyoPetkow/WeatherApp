@@ -44,7 +44,5 @@ export const getDailyConditions = () => {
 };
 
 export const getDailyConditionsBySearch = (displayCity) => {
-    return Axios.get(
-        dailyPatternURL(displayCity.latitude, displayCity.longitude, getFormatedDate(), getFormatedEndDate())
-    );
+    return Axios.get(dailyPatternURL(displayCity.latitude, displayCity.longitude, getFormatedDate(), getFormatedEndDate()));
 };

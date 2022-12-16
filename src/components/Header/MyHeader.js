@@ -1,15 +1,13 @@
 import { useContext } from "react";
-import { useLocation } from "react-router-dom";
 
-import { NavLink } from "react-router-dom";
-import { Button, Space } from "antd";
+import { NavLink, useLocation } from "react-router-dom";
+import { Button, Space, Row, Col } from "antd";
 
 import { UserContext } from "../../UserContext";
 import { signOut, getAuth } from "firebase/auth";
-import { Row, Col } from "antd";
+import Search from "../SerachBar/Search";
 
 import style from "./MyHeader.module.css";
-import Search from "../SerachBar/Search";
 
 const MyHeader = ({ onSearchHandler }) => {
     const auth = getAuth();

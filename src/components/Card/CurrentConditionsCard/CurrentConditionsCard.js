@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { Card, Row, Col } from "antd";
 import { doc, setDoc, deleteDoc } from "firebase/firestore";
 
-import WEATHER_CODES from "../../../constants/CardConstants/WEATHER_CODES";
 import { UserContext } from "../../../UserContext";
 import { CitiesContext } from "../../../CitiesContext";
 import { db } from "../../../config/firebase";
 import ConditionsIcon from "../common/ConditionsIcon";
 import { notify } from "./favoriteCityTostNotification";
 import { dynamicClass } from "./CurrentConditionsDinamicBackgroundClass";
+import WEATHER_CODES_DICTIONARY from "../../../constants/CardConstants/WEATHER_CODES_DICTIONARY";
 
 import style from "./CurrentConditions.module.css";
 
@@ -20,7 +20,8 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
     let date = new Date();
     let time = date.getHours() + ":" + date.getMinutes();
 
-    const weatherConditions = WEATHER_CODES.find((obj) => {
+    //translate weather code to brief summary ofthe weather
+    const weatherConditions = WEATHER_CODES_DICTIONARY.find((obj) => {
         return obj.code === currentConditions.current_weather?.weathercode;
     });
 

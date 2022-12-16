@@ -1,4 +1,4 @@
-const WEATHER_CODES = [
+const WEATHER_CODES_DICTIONARY = [
     { code: 0, description: "Clear sky" },
     { code: 1, description: "Mainly clear" },
     { code: 2, description: "Partly cloudy" },
@@ -29,4 +29,4 @@ const WEATHER_CODES = [
     { code: 99, description: "Thunderstorm with hail" },
 ];
 
-export default WEATHER_CODES;
+export default WEATHER_CODES_DICTIONARY;

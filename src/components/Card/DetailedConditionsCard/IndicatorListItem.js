@@ -1,4 +1,5 @@
 import { Col } from "antd";
+
 import style from "./DetailedConditions.module.css";
 
 export const IndicatorListItem = ({ iconSrc, title, value, units }) => {
