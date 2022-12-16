@@ -16,6 +16,7 @@ import { INITIAL_DISPLAY_CITY } from "./constants/CardConstants/INITIAL_DISPLAY_
 import "react-toastify/dist/ReactToastify.css";
 import style from "./App.module.css";
 import "./App.css";
+import { ResetPassword } from "./authentication/ResetPassword/ResetPassword";
 const { Header, Footer } = Layout;
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
     useEffect(() => {
         var storedUser = JSON.parse(localStorage.getItem("authUser"));
         if (storedUser) setUser({ email: storedUser.email, displayName: storedUser.displayName, uid: storedUser.uid });
+        console.log(auth.currentUser);
     }, []);
 
     auth.onAuthStateChanged(function (user) {
@@ -73,7 +75,7 @@ function App() {
 
     useEffect(() => {
         if (user) {
-            if (favoriteCity?.city.toLowerCase() == displayCity?.city.toLowerCase()) {
+            if (favoriteCity?.city.toLowerCase() === displayCity?.city.toLowerCase()) {
                 setIsFavourite(true);
             } else {
                 setIsFavourite(false);
@@ -103,6 +105,7 @@ function App() {
                                     <Route path="/" element={<MainWrapper displayCity={displayCity} />}></Route>
                                     <Route path="/register" element={<RegisterFrom />}></Route>
                                     <Route path="/login" element={<LoginForm />}></Route>
+                                    <Route path="/resetPassword" element={<ResetPassword />}></Route>
                                 </Routes>
                             </Col>
                             <Col sm={0} md={0} lg={4} className={style.appGridSideCol}></Col>

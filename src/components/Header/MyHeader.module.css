@@ -1,6 +1,7 @@
 .headerContent{
-    margin-top: 2%;
+    margin-top: 20px;
     height: fit-content;
+    min-height: 98px;
 }
 
 .logo{
