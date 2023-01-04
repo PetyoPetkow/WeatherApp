@@ -5,6 +5,8 @@ import { getDoc, doc } from "firebase/firestore";
 import { ToastContainer } from "react-toastify";
 
 import { db, auth } from "./config/firebase";
+import UserProfile from "./authentication/userData/UserProfile";
+import EditProfile from "./authentication/userData/EditProfile";
 import MainWrapper from "./components/Main/MainWrapper";
 import MyHeader from "./components/Header/MyHeader";
 import { RegisterFrom } from "./authentication/register/RegisterForm";
@@ -37,8 +39,9 @@ function App() {
     //get user's favorite city and add it to favoriteCity and DisplayCity states
     const getFavouriteCity = async () => {
         const fav = await getDoc(doc(db, "users", user.uid));
-
-        if (fav.data()) {
+        console.log(fav.data());
+        if (fav.data()?.favCity !== undefined) {
+            console.log("yes");
             setFavoriteCity({
                 city: fav.data().favCity,
                 latitude: fav.data().latitude,
@@ -73,6 +76,8 @@ function App() {
             getFavouriteCity();
         } else {
             setDisplayCity(INITIAL_DISPLAY_CITY);
+            setIsFavourite(false);
+            setFavoriteCity();
         }
     }, [user]);
 
@@ -109,6 +114,8 @@ function App() {
                                     <Route path="/register" element={user ? <Navigate to="/" replace /> : <RegisterFrom />} />
                                     <Route path="/login" element={user ? <Navigate to="/" replace /> : <LoginForm />} />
                                     <Route path="/resetPassword" element={<ResetPassword />}></Route>
+                                    <Route path="/userProfile" element={<UserProfile></UserProfile>} />
+                                    <Route path="/editProfile" element={<EditProfile></EditProfile>} />
                                 </Routes>
                             </Col>
                             <Col sm={0} md={0} lg={4} className={style.appGridSideCol}></Col>

@@ -25,7 +25,7 @@ const DailyConditionsCard = (dailyConditions) => {
             <Card ref={scrollRef} className={style.dailyConditionsCard}>
                 <div className="site-card-wrapper">
                     <Space size={40}>
-                        {displayData.map((singleDayData) => {
+                        {displayData?.map((singleDayData) => {
                             return SingleDayListItem(singleDayData);
                         })}
                     </Space>

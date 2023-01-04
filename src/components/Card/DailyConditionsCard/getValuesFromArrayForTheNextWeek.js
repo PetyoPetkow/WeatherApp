@@ -12,7 +12,7 @@ export const getValuesFromArrayForTheNextWeek = (arr) => {
         data.push({
             time: index == 0 ? "Today" : WEEKDAY[date.getDay()] + " " + dateToday,
             weathercode: dailyData?.weathercode[index],
-            temperatureMin: dailyData?.temperature_2m_min[index] + arr?.dailyConditions?.daily_units.temperature_2m_min,
+            temperatureMin: dailyData?.temperature_2m_min[index] + arr?.dailyConditions?.daily_units?.temperature_2m_min,
             temperatureMax: dailyData?.temperature_2m_max[index] + arr?.dailyConditions?.daily_units?.temperature_2m_max, //izmisli neshto za tuka che ne moje da se gleda
             precipitation: dailyData?.precipitation_sum[index] <= 10 ? dailyData?.precipitation_sum[index] * 10 + "%" : "100%",
         });

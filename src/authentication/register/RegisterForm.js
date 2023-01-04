@@ -2,19 +2,21 @@ import React, { useContext, useState } from "react";
 
 import { auth } from "../../config/firebase";
 import { useNavigate } from "react-router-dom";
-import { Input, Form, Checkbox, Button } from "antd";
+import { Input, Form, Checkbox, Button, DatePicker, Select } from "antd";
 
+import { countryArr } from "../../constants/CardConstants/COUNTRY_ARRAY";
 import { UserContext } from "../../UserContext";
 import { register } from "./register";
 
 export const RegisterFrom = () => {
     const navigate = useNavigate();
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [registerEmail, setRegisterEmail] = useState();
     const [registerPassword, setRegisterPassword] = useState();
-    const [name, setName] = useState();
+    const [userValues, setUserValues] = useState({ username: "", country: "", birthDate: "" });
 
     const onFinish = (values) => {
+        register(auth, registerEmail, registerPassword, navigate, setUser, userValues);
         console.log("Success:", values);
     };
 
@@ -44,11 +46,12 @@ export const RegisterFrom = () => {
                         },
                     ]}
                     onChange={(e) => {
-                        setName(e.target.value);
+                        setUserValues({ ...userValues, username: e.target.value });
                     }}
                 >
                     <Input />
                 </Form.Item>
+
                 <Form.Item
                     label="Email"
                     name="email"
@@ -81,16 +84,45 @@ export const RegisterFrom = () => {
                     <Input.Password />
                 </Form.Item>
 
+                <Form.Item
+                    label="Birth date"
+                    name="birthDate"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your birth date!",
+                        },
+                    ]}
+                >
+                    <DatePicker
+                        onChange={(value) => {
+                            setUserValues({ ...userValues, birthDate: value });
+                        }}
+                    />
+                </Form.Item>
+
+                <Form.Item label="Country" name="country">
+                    <Select
+                        style={{ width: "30%" }}
+                        showSearch
+                        value={userValues?.country}
+                        placeholder="Select a country"
+                        optionFilterProp="children"
+                        onChange={(e) => {
+                            console.log(e);
+                            setUserValues({ ...userValues, country: e });
+                        }}
+                        filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
+                        options={countryArr}
+                    />
+                </Form.Item>
+
                 <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        onClick={() => register(auth, registerEmail, registerPassword, navigate, setUser, name)}
-                    >
+                    <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
                 </Form.Item>

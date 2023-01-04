@@ -28,7 +28,12 @@ const MyHeader = ({ onSearchHandler }) => {
                 <div>
                     {user ? (
                         <Space size={20}>
-                            <div className={style.greetingBox}>Hello, {user.displayName}</div>
+                            <div className={style.greetingBox}>
+                                Hello,{" "}
+                                <NavLink style={{ color: "white" }} to="/userProfile">
+                                    {user.email}
+                                </NavLink>
+                            </div>
                             <Button onClick={() => signOut(auth).then(setUser(null))} type="link">
                                 <img alt="logout" width="20px" src="icons/otherIcons/icons8-logout-50.png"></img>
                             </Button>

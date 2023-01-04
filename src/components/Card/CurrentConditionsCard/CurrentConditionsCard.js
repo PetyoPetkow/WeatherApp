@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Card, Row, Col } from "antd";
-import { doc, setDoc, deleteDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc, deleteField } from "firebase/firestore";
 
 import { UserContext } from "../../../UserContext";
 import { CitiesContext } from "../../../CitiesContext";
@@ -28,7 +28,7 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
     const addFavourite = async () => {
         if (!isFavouriteValue) {
             setIsFavouriteValue(true);
-            await setDoc(doc(db, "users", user.uid), {
+            await updateDoc(doc(db, "users", user.uid), {
                 favCity: displayCity.city,
                 longitude: displayCity.longitude,
                 latitude: displayCity.latitude,
@@ -40,7 +40,11 @@ const CurrentConditionsCard = ({ currentConditions, displayCity }) => {
     const removeFavourite = async (isFavouriteValue) => {
         if (isFavouriteValue) {
             setIsFavouriteValue(false);
-            await deleteDoc(doc(db, "users", user.uid));
+            await updateDoc(doc(db, "users", user.uid), {
+                favCity: deleteField(),
+                longitude: deleteField(),
+                latitude: deleteField(),
+            });
             notify(displayCity.city, "removed");
         }
     };
